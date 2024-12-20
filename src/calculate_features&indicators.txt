@@ -16,3 +16,8 @@ def compute_atr(stock_data):
   return atr.sub(atr.mean()).div(atr.std())
 df['atr'] = df.groupby(level=1, group_keys=False).apply(compute_atr)
 
+def compute_macd(close):
+ macd = pandas_ta.macd(close=close, length=20).iloc[:,0]
+ return macd.sub(macd.mean()).div(macd.std())
+
+df['macd'] = df.groupby(level=1, group_keys=False)['adj close'].apply(compute_macd)
