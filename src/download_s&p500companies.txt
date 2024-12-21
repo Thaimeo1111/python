@@ -20,7 +20,7 @@ end_date = '2024-12-20'
 
 start_date = pd.datetime(end_time)-pd.DateOffset(365*8)
 
-df = yf.(tickers=symbols_list, start=start_date, end=end_date).stack()
+df = yf.download(tickers=symbols_list, start=start_date, end=end_date).stack()
 
 df.index.names = ['date','ticker']
 
